@@ -1,0 +1,9 @@
+{
+  "rewrites": [
+    {"source": "/view/:pid", "destination": "/api/view/$pid"},
+    {"source": "/view/:pid*", "destination": "/api/view/$pid"}
+  ],
+  "headers": [
+    {"source": "/view/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=300, s-maxage=1800" }]}
+  ]
+}

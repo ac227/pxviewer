@@ -13,7 +13,7 @@ const now = new Date().toISOString().slice(0, 19).replace('T', ' ');
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   const pid = req.query.pid as string;
   if (!pid || !/^\d+$/.test(pid)) {
-    return res.status(400).send(`invalid pid ${now}`);
+    return res.status(400).send(`invalid pid ${pid} ${now} UTC`);
   }
 
   try {
@@ -204,6 +204,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     res.send(html);
 
   } catch (err: any) {
-    res.status(500).send(`failed ${pid} ${err.message || 'Unknown error'} ${now}`);
+    res.status(500).send(`failed ${pid} ${err.message || 'Unknown error'} ${now} UTC`);
   }
 }
